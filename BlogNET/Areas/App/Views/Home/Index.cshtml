@@ -1,0 +1,38 @@
+﻿@model List<Article>
+@{
+    ViewData["Title"] = "Page d'acceuil";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        @foreach(var article in Model)
+        {
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <small class="text-muted">Ecrit le @article.CreatedAt.ToString("D") par </small>
+                        <strong class="mr-2" href="#"><i>@article.AuthorId</i></strong>
+                    </div>
+                    <h2><a class="article-title" asp-controller="Home" asp-action="Show" asp-route-id="@article.Id">@article.Title</a></h2>
+                    <p class="article-content">@article.Content</p>
+                </div>
+                <p><a asp-controller="Home" asp-action="Show" asp-route-id="@article.Id">Lire la suite</a></p>
+            </article>
+            <hr />
+        }
+    </div>
+    <div class="col-md-4">
+        <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>
+                You can put any information here you'd like.
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Latest Posts</li>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <li class="list-group-item list-group-item-light">Calendars</li>
+                    <li class="list-group-item list-group-item-light">etc</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

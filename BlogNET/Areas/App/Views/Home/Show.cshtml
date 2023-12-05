@@ -1,0 +1,22 @@
+﻿@model Article
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <p><a asp-action="Index">Retour a la page d'acceuil</a></p>
+        <article class="media content-section">
+            <div class="media-body">
+                <h1>@Model.Title</h1>
+                <div class="article-metadata">
+                    <small class="text-muted">Ecrit le @Model.CreatedAt.ToString("D") par </small>
+                    <strong class="mr-2" href="#"><i>@Model.AuthorId</i></strong>
+                </div>
+            </div>
+            <p>
+                @Html.Raw(Model.Content)
+            </p>
+        </article>
+    </div>
+</div>

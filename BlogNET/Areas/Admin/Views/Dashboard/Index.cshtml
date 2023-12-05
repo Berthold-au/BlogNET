@@ -1,0 +1,42 @@
+﻿@model List<Article>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Tableau de bord</h1>
+
+<div>
+    <form class="form">
+        <div class="form-group">
+            <input type="search" placeholder="Rechercher un article" class="form-control" />
+        </div><br />
+        <button type="submit" hidden></button>
+    </form>
+    <a asp-controller="Dashboard" asp-action="Add" class="btn btn-warning">Ajouter un article</a>
+</div><br />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre de l'article</th>
+            <th>Autheur</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var article in Model)
+        {
+            <tr>
+                <td>@article.Id</td>
+                <td>@article.Title</td>
+                <td>@article.AuthorId</td>
+                <td>
+                    <a asp-controller="Dashboard" asp-action="Edit" asp-route-id="@article.Id" class="btn btn-primary">Editer</a>
+                    <a asp-controller="Dashboard" asp-action="Delete" asp-route-id="@article.Id" class="btn btn-danger" onclick="return confirm('Voulez vous vraiment supprimer cet article ?');">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
